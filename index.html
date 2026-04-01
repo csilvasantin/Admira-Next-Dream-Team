@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admira Next Dream Team</title>
+  <meta
+    name="description"
+    content="Web interna del Dream Team de Admira Next con miembros, roles, caracteristicas y fuentes principales de informacion."
+  >
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --surface: rgba(255, 252, 246, 0.82);
+      --surface-strong: #fffdf9;
+      --ink: #182229;
+      --muted: #5f6b71;
+      --navy: #182d3a;
+      --teal: #0f766e;
+      --gold: #c38b2d;
+      --clay: #b85d42;
+      --line: rgba(24, 34, 41, 0.1);
+      --shadow: 0 24px 68px rgba(24, 45, 58, 0.14);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(195, 139, 45, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.15), transparent 24%),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(24, 34, 41, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 34, 41, 0.035) 1px, transparent 1px);
+      background-size: 76px 76px;
+      mask-image: radial-gradient(circle at center, black 42%, transparent 88%);
+      opacity: 0.35;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 24px));
+      margin: 20px auto 42px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass,
+    .hero,
+    .panel,
+    .member-card,
+    .source-card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 20px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: white;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .hero {
+      border-radius: var(--radius-xl);
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      top: -70px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(195, 139, 45, 0.22), transparent 66%);
+    }
+
+    .eyebrow,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      background: rgba(15, 118, 110, 0.1);
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      background: rgba(195, 139, 45, 0.12);
+      color: #976814;
+      margin-bottom: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    h3 {
+      font-size: 1.22rem;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      line-height: 1.66;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 18px 0 24px;
+      font-size: 1.08rem;
+    }
+
+    .hero-grid,
+    .stats-grid,
+    .members-grid,
+    .sources-grid,
+    .octopus-grid,
+    .org-chart {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.45fr 0.95fr;
+      align-items: start;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .members-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sources-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .octopus-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .org-chart {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .metric,
+    .member-card,
+    .source-card {
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+
+    .metric {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    section {
+      margin-top: 18px;
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+      padding: 30px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      max-width: 620px;
+      margin: 0;
+    }
+
+    .member-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--clay));
+    }
+
+    .role-line {
+      margin: 12px 0 14px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .mini-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      margin: 16px 0 8px;
+      font-weight: 800;
+    }
+
+    .source-card a {
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .org-center,
+    .org-node {
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .org-center {
+      background: linear-gradient(135deg, var(--navy), #234656);
+      color: #f9f4ea;
+      text-align: center;
+    }
+
+    .org-center p {
+      color: rgba(249, 244, 234, 0.82);
+    }
+
+    .org-node h3 {
+      margin-bottom: 8px;
+    }
+
+    .note {
+      padding: 24px 26px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--navy), #244354);
+      color: #f9f4ea;
+      box-shadow: var(--shadow);
+    }
+
+    .note p {
+      color: rgba(249, 244, 234, 0.82);
+      margin: 10px 0 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .stats-grid,
+      .members-grid,
+      .sources-grid,
+      .octopus-grid,
+      .org-chart {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      .section-head {
+        display: block;
+      }
+
+      .nav {
+        margin-top: 14px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero,
+      .panel {
+        padding: 22px;
+      }
+
+      .topbar {
+        border-radius: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>Admira Next Dream Team</div>
+      </div>
+      <nav class="nav">
+        <a href="#retos">Retos</a>
+        <a href="#pulpo">Pulpo</a>
+        <a href="#miembros">Miembros</a>
+        <a href="#roles">Roles</a>
+        <a href="#fuentes">Fuentes</a>
+        <a href="#regla">Ritual diario</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Team Operating System</span>
+          <h1>El Dream Team vivo de Admira Next.</h1>
+          <p class="lead">
+            Esta web documenta los distintos miembros del Dream Team de Admira Next, sus roles,
+            caracteristicas principales y las fuentes de informacion que alimentan su trabajo.
+          </p>
+        </div>
+
+        <div class="metric">
+          <strong>6</strong>
+          <p>miembros activos del equipo, entre asistentes de IA y funciones especializadas.</p>
+          <div class="mini-title">Enfoque comun</div>
+          <p>Claridad, continuidad, colaboracion y memoria compartida.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="metric">
+          <strong>3 retos</strong>
+          <p>El Dream Team trabaja con un marco estrategico comun: trabajo, capital, y energia con infraestructuras y regulacion.</p>
+        </article>
+        <article class="metric">
+          <strong>8 extremidades</strong>
+          <p>La organizacion Pulpo de Admira Next concentra ocho roles ejecutivos para cubrir las palancas mas importantes del sistema.</p>
+        </article>
+        <article class="metric">
+          <strong>Onboarding first</strong>
+          <p>Antes de cada actualizacion y de cada dia de trabajo, lo primero que se revisa es el onboarding.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="retos" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Marco estrategico</span>
+          <h2>Los retos principales de Admira Next</h2>
+        </div>
+        <p>
+          Estos retos son el contexto comun sobre el que el Dream Team debe pensar,
+          priorizar y construir. Funcionan como norte compartido para producto, research y ejecucion.
+        </p>
+      </div>
+
+      <div class="members-grid">
+        <article class="member-card">
+          <h3>1. Escasez de trabajadores</h3>
+          <p>Admira Next debe pensar como ayudar a organizaciones y personas a hacer mas con menos talento disponible, mejorando productividad, apoyo operativo y capacidad de ejecucion.</p>
+          <div class="mini-title">Solucion ya activada</div>
+          <p>La respuesta de Admira a este reto ha sido la creacion de su propia Universidad, como mecanismo para formar talento y reducir dependencia externa.</p>
+        </article>
+        <article class="member-card">
+          <h3>2. Restricciones de capital</h3>
+          <p>Las soluciones deben tener en cuenta limites de inversion, necesidad de eficiencia y presion por demostrar valor con menos recursos y mas disciplina.</p>
+          <div class="mini-title">Solucion ya activada</div>
+          <p>La respuesta de Admira a este reto es `Admira Next`: innovacion con soluciones mas automatizadas que permiten hacer mas con los mismos recursos.</p>
+        </article>
+        <article class="member-card">
+          <h3>3. Energia, infraestructuras y regulacion</h3>
+          <p>El proyecto debe incorporar la realidad material y normativa: capacidad energetica, infraestructuras disponibles, acceso a mercados, marcos regulatorios y condicionantes globales que afectan escalabilidad y operacion.</p>
+          <div class="mini-title">Solucion ya activada</div>
+          <p>La respuesta activada por Admira es la internacionalizacion con foco en China, como via para abrir opciones operativas, industriales y estrategicas ante este reto combinado.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pulpo" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Organizacion Pulpo</span>
+          <h2>8 extremidades para liderar Admira Next</h2>
+        </div>
+        <p>
+          El modelo Pulpo busca repartir el liderazgo en ocho grandes funciones ejecutivas que cubren
+          vision, capital, tecnologia, mercado, operaciones, talento, regulacion y estrategia.
+        </p>
+      </div>
+
+      <div class="org-chart">
+        <article class="org-node">
+          <h3>CFO</h3>
+          <p>Capital, asignacion de recursos, eficiencia y disciplina financiera.</p>
+        </article>
+        <article class="org-center">
+          <h2>CEO</h2>
+          <p>Nucleo central del Pulpo. Marca la direccion, alinea las extremidades y decide prioridades del conjunto.</p>
+        </article>
+        <article class="org-node">
+          <h3>CTO</h3>
+          <p>Tecnologia, automatizacion, arquitectura y ventaja operativa.</p>
+        </article>
+
+        <article class="org-node">
+          <h3>CMO</h3>
+          <p>Marca, crecimiento, posicionamiento y lectura del mercado.</p>
+        </article>
+        <article class="org-node">
+          <h3>COO</h3>
+          <p>Operaciones, ejecucion, procesos y continuidad del negocio.</p>
+        </article>
+        <article class="org-node">
+          <h3>CHRO</h3>
+          <p>Talento, cultura, aprendizaje y Universidad propia de Admira.</p>
+        </article>
+
+        <article class="org-node">
+          <h3>CLO</h3>
+          <p>Regulacion, compliance, estructura juridica y proteccion del marco operativo.</p>
+        </article>
+        <article class="org-node">
+          <h3>CSO</h3>
+          <p>Estrategia, internacionalizacion, movimientos de largo plazo y foco geografico como China.</p>
+        </article>
+      </div>
+
+      <div class="octopus-grid" style="margin-top: 18px;">
+        <article class="member-card">
+          <h3>CEO</h3>
+          <p>Direccion general, sentido de conjunto y decisiones de maxima prioridad.</p>
+        </article>
+        <article class="member-card">
+          <h3>CFO</h3>
+          <p>Optimiza capital y convierte la restriccion financiera en disciplina de crecimiento.</p>
+        </article>
+        <article class="member-card">
+          <h3>CTO</h3>
+          <p>Activa tecnologia y automatizacion para hacer mas con menos.</p>
+        </article>
+        <article class="member-card">
+          <h3>CMO</h3>
+          <p>Conecta mercado, relato y expansion de demanda.</p>
+        </article>
+        <article class="member-card">
+          <h3>COO</h3>
+          <p>Aterriza la estrategia en operaciones repetibles y escalables.</p>
+        </article>
+        <article class="member-card">
+          <h3>CHRO</h3>
+          <p>Convierte el reto del talento en sistema de formacion, cultura y capacidades.</p>
+        </article>
+        <article class="member-card">
+          <h3>CLO</h3>
+          <p>Protege la organizacion frente a regulacion, contratos y riesgos de cumplimiento.</p>
+        </article>
+        <article class="member-card">
+          <h3>CSO</h3>
+          <p>Lee el tablero global y mueve a Admira hacia oportunidades estrategicas internacionales.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="regla" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Ritual diario</span>
+          <h2>Onboarding al entrar, offboarding al salir.</h2>
+        </div>
+        <p>
+          El sistema diario del Dream Team se apoya en dos movimientos obligatorios:
+          entrar revisando el onboarding y salir dejando offboarding, actualizacion web y apertura de la pagina publica resultante.
+        </p>
+      </div>
+      <div class="note">
+        <h3>Por que importa</h3>
+        <p>
+          Esta regla protege la continuidad del proyecto de principio a fin. Evita trabajar con contexto desactualizado
+          y evita tambien cerrar el dia sin dejar relevo, pendientes, estado visible y supervision final sobre la URL publica.
+        </p>
+      </div>
+    </section>
+
+    <section id="miembros" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Miembros</span>
+          <h2>Quien forma el Dream Team</h2>
+        </div>
+        <p>
+          Cada miembro tiene una especialidad distinta. El valor del equipo no esta solo en cada perfil,
+          sino en como se complementan entre si.
+        </p>
+      </div>
+
+      <div class="members-grid">
+        <article class="member-card">
+          <h3>Claude</h3>
+          <p class="role-line">Claridad conceptual, estructura y narrativa.</p>
+          <p>Ordena ideas complejas, redacta documentos base y construye un marco comun para humanos y asistentes.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Convierte ambiguedad en estructura.</li>
+            <li>Cuida la coherencia narrativa del proyecto.</li>
+            <li>Brilla en onboarding, documentacion y enfoque.</li>
+          </ul>
+        </article>
+
+        <article class="member-card">
+          <h3>Codex</h3>
+          <p class="role-line">Ejecucion, implementacion y orden tecnico.</p>
+          <p>Convierte decisiones en entregables concretos: estructura de repo, prototipos, HTML y base tecnica visible.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Materializa ideas en archivos y estructura.</li>
+            <li>Ayuda a mantener coherencia tecnica.</li>
+            <li>Rinde mejor cuando la direccion ya esta bastante clara.</li>
+          </ul>
+        </article>
+
+        <article class="member-card">
+          <h3>Gemini</h3>
+          <p class="role-line">Exploracion, comparacion y apertura de opciones.</p>
+          <p>Amplia el campo de vision del equipo antes de cerrar decisiones, proponiendo alternativas y comparativas.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Ayuda en brainstorming y mapas de opciones.</li>
+            <li>Reduce el riesgo de elegir demasiado pronto.</li>
+            <li>Funciona mejor combinado con perfiles mas ejecutores.</li>
+          </ul>
+        </article>
+
+        <article class="member-card">
+          <h3>Perplexity</h3>
+          <p class="role-line">Investigacion, contraste y radar externo.</p>
+          <p>Aporta referencias, contexto actualizado y validacion de supuestos cuando el equipo necesita mirar fuera del repo.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Ideal para research y benchmarking.</li>
+            <li>Resume fuentes y contrasta informacion.</li>
+            <li>Sus hallazgos necesitan interpretacion interna.</li>
+          </ul>
+        </article>
+
+        <article class="member-card">
+          <h3>Mistral</h3>
+          <p class="role-line">Velocidad, simplificacion e iteracion ligera.</p>
+          <p>Ayuda a salir del bloqueo, producir primeras versiones rapidas y simplificar estructuras para seguir avanzando.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Muy util en fases tempranas.</li>
+            <li>Ayuda a desbloquear y aterrizar rapido.</li>
+            <li>Complementa bien el trabajo de refinement posterior.</li>
+          </ul>
+        </article>
+
+        <article class="member-card">
+          <h3>Customer Care</h3>
+          <p class="role-line">Responsable de Atencion al Cliente.</p>
+          <p>Representa la voz del cliente, protege la calidad de la experiencia y convierte conversaciones en inteligencia para todo el equipo.</p>
+          <div class="mini-title">Caracteristicas</div>
+          <ul>
+            <li>Escucha antes de automatizar.</li>
+            <li>Usa IA para mantener cercania a escala.</li>
+            <li>Convierte feedback en mejoras de producto y servicio.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="roles" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Roles</span>
+          <h2>Como se coordinan los miembros</h2>
+        </div>
+        <p>
+          El equipo esta pensado para cubrir un ciclo completo: entender, explorar, investigar, construir,
+          simplificar y escuchar al cliente.
+        </p>
+      </div>
+
+      <div class="members-grid">
+        <article class="member-card">
+          <h3>Claude + Gemini</h3>
+          <p>Gemini abre posibilidades y Claude las ordena en una narrativa util para la toma de decisiones.</p>
+        </article>
+        <article class="member-card">
+          <h3>Claude + Codex</h3>
+          <p>Claude deja claro el marco y Codex lo convierte en estructura, documentos y entregables reales.</p>
+        </article>
+        <article class="member-card">
+          <h3>Perplexity + Equipo</h3>
+          <p>Perplexity alimenta al resto con research, referencias y contraste para mejorar estrategia y ejecucion.</p>
+        </article>
+        <article class="member-card">
+          <h3>Mistral + Codex</h3>
+          <p>Mistral ayuda a producir versiones rapidas y Codex las consolida en una base mas solida.</p>
+        </article>
+        <article class="member-card">
+          <h3>Customer Care + Claude</h3>
+          <p>Los aprendizajes de clientes pasan a documentacion, tono y narrativa del proyecto.</p>
+        </article>
+        <article class="member-card">
+          <h3>Customer Care + Codex</h3>
+          <p>Las fricciones reales de clientes se convierten en mejoras concretas dentro del producto o sistema.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="fuentes" class="panel glass">
+      <div class="section-head">
+        <div>
+          <span class="tag">Fuentes</span>
+          <h2>Fuentes principales de informacion</h2>
+        </div>
+        <p>
+          Estas son las bases documentales y referencias que hoy alimentan al Dream Team y a sus distintos miembros.
+        </p>
+      </div>
+
+      <div class="sources-grid">
+        <article class="source-card">
+          <h3>Onboarding central</h3>
+          <p>Fuente operativa principal del proyecto. Es el primer documento que debe leerse antes de trabajar.</p>
+          <div class="mini-title">Referencia</div>
+          <a href="ONBOARDING.md">ONBOARDING.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Offboarding diario</h3>
+          <p>Guia para cerrar cada jornada, dejar relevo y confirmar la actualizacion diaria de la web del proyecto.</p>
+          <div class="mini-title">Referencia</div>
+          <a href="OFFBOARDING.md">OFFBOARDING.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Instrucciones</h3>
+          <p>Define como debe trabajarse entre onboarding y offboarding, incluyendo la secuencia HTML, Pages, cache y supervision.</p>
+          <div class="mini-title">Referencia</div>
+          <a href="INSTRUCCIONES.md">INSTRUCCIONES.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Guia de colaboracion</h3>
+          <p>Define reglas compartidas, orden de trabajo y continuidad entre distintas IAs.</p>
+          <div class="mini-title">Referencia</div>
+          <a href="AI_COLLABORATION.md">AI_COLLABORATION.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Mapa del Dream Team</h3>
+          <p>Resume la estructura general del equipo y la especialidad de cada estrella activa.</p>
+          <div class="mini-title">Referencia</div>
+          <a href="dream-team/README.md">dream-team/README.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Fichas de rol</h3>
+          <p>Cada miembro tiene una ficha propia con mision, fortalezas, tareas, limites y coordinacion.</p>
+          <div class="mini-title">Referencias</div>
+          <a href="dream-team/claude/README.md">Claude</a>,
+          <a href="dream-team/codex/README.md">Codex</a>,
+          <a href="dream-team/gemini/README.md">Gemini</a>,
+          <a href="dream-team/perplexity/README.md">Perplexity</a>,
+          <a href="dream-team/mistral/README.md">Mistral</a>,
+          <a href="dream-team/customer-care/README.md">Customer Care</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Memoria de Customer Care</h3>
+          <p>Guarda aprendizajes y formacion principal del responsable de Atencion al Cliente.</p>
+          <div class="mini-title">Referencias</div>
+          <a href="dream-team/customer-care/MEMORY.md">MEMORY.md</a>
+        </article>
+
+        <article class="source-card">
+          <h3>Fuente externa clave</h3>
+          <p>Resumen de Blinkist y web oficial de “Me, My Customer, and AI”, base de formacion inicial de Customer Care.</p>
+          <div class="mini-title">Referencias</div>
+          <a href="https://www.blinkist.com/en/books/me-my-customer-and-ai-en">Blinkist</a>
+          <br>
+          <a href="https://www.memycustomerandai.com/">Sitio oficial del libro</a>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

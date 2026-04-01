@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding | Admira Next Dream Team</title>
+  <meta
+    name="description"
+    content="Onboarding del proyecto Admira Next Dream Team para lectura humana y contexto compartido con IAs."
+  >
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --surface: rgba(255, 252, 246, 0.88);
+      --ink: #182026;
+      --muted: #5e6a6f;
+      --line: rgba(24, 32, 38, 0.1);
+      --navy: #183040;
+      --teal: #0d7b72;
+      --gold: #c3902f;
+      --shadow: 0 24px 64px rgba(24, 48, 64, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(195, 144, 47, 0.18), transparent 22%),
+        radial-gradient(circle at top right, rgba(13, 123, 114, 0.16), transparent 24%),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+    }
+
+    .page {
+      width: min(1080px, calc(100% - 24px));
+      margin: 20px auto 40px;
+    }
+
+    .hero,
+    .panel,
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      padding: 34px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--teal);
+      background: rgba(13, 123, 114, 0.1);
+      margin-bottom: 14px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.14rem;
+      margin-bottom: 10px;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 1rem;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 16px;
+      font-size: 1.08rem;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel {
+      padding: 28px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(195, 144, 47, 0.12);
+      color: #9a6b16;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    .highlight {
+      border-left: 4px solid var(--teal);
+      padding-left: 16px;
+      margin-top: 16px;
+    }
+
+    .footer {
+      padding: 28px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--navy), #26465a);
+      color: #f9f4ea;
+      box-shadow: var(--shadow);
+    }
+
+    .footer p {
+      color: rgba(249, 244, 234, 0.8);
+    }
+
+    @media (max-width: 860px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .panel,
+      .footer {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">Onboarding</span>
+      <h1>Admira Next Dream Team</h1>
+      <p class="lead">
+        Esta pagina resume el contexto del proyecto para cualquier persona que quiera entenderlo rapido.
+        En paralelo, existe una version en Markdown para que otras IAs puedan leer el mismo contenido de forma mas operativa.
+      </p>
+    </section>
+
+    <section class="panel">
+      <span class="tag">Vision</span>
+      <h2>Que estamos haciendo</h2>
+      <p>
+        Estamos montando una base de proyecto pensada para colaboracion entre varias IAs y humanos.
+        Antes de entrar en una implementacion tecnica grande, estamos definiendo contexto, reglas de trabajo y una estructura comun.
+      </p>
+      <div class="highlight">
+        <p>
+          El objetivo de esta fase es construir claridad compartida. La tecnologia llegara despues, cuando la direccion del proyecto este mejor decidida.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel">
+        <span class="tag">Estado actual</span>
+        <h2>Donde estamos</h2>
+        <ul>
+          <li>Repositorio en fase inicial.</li>
+          <li>Sin stack tecnico definitivo.</li>
+          <li>Sin producto implementado aun.</li>
+          <li>Con documentacion base para colaboracion entre asistentes.</li>
+          <li>El onboarding es el primer punto de lectura antes de cada actualizacion.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <span class="tag">Prioridad</span>
+        <h2>Que importa ahora</h2>
+        <ul>
+          <li>Ordenar contexto.</li>
+          <li>Facilitar continuidad entre sesiones.</li>
+          <li>Evitar trabajo duplicado entre IAs.</li>
+          <li>Preparar una primera direccion clara del proyecto.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="tag">Conceptos</span>
+      <h2>Los conceptos que estamos trabajando</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Colaboracion multi-IA</h3>
+          <p>Definir una forma de trabajo donde varias IAs puedan aportar sin pisarse ni perder contexto.</p>
+        </article>
+        <article class="card">
+          <h3>Contexto persistente</h3>
+          <p>Dejar documentado que es el proyecto, en que fase esta y que reglas deben respetarse al colaborar.</p>
+        </article>
+        <article class="card">
+          <h3>Claridad antes que complejidad</h3>
+          <p>No elegir arquitectura ni dependencias grandes hasta entender bien el tipo de producto que queremos construir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel">
+        <span class="tag">Formato dual</span>
+        <h2>Una version para IAs y otra para humanos</h2>
+        <p>
+          Este proyecto usa dos formatos de conocimiento:
+        </p>
+        <ul>
+          <li>Markdown para lectura tecnica y colaboracion operativa.</li>
+          <li>HTML para lectura humana mas comoda, visual y rapida.</li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <span class="tag">Principios</span>
+        <h2>Como queremos construir</h2>
+        <ul>
+          <li>Cambios pequenos y revisables.</li>
+          <li>Documentacion como infraestructura.</li>
+          <li>Repositorio ligero en la fase inicial.</li>
+          <li>Continuidad entre asistentes y sesiones.</li>
+          <li>Revisar siempre el onboarding antes de ponerse a trabajar.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <span class="tag">Regla diaria</span>
+      <h2>Lo primero que hay que mirar</h2>
+      <p>
+        Antes de cada actualizacion y antes de empezar cualquier dia de trabajo en el Dream Team de Admira Next,
+        el primer archivo que debe revisarse es el onboarding.
+      </p>
+      <div class="highlight">
+        <p>
+          Esto asegura que si otra IA ha dejado consejos, novedades, contexto nuevo o cambios de direccion,
+          todo el equipo empiece desde la version mas actualizada del proyecto.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="tag">Entrada recomendada</span>
+      <h2>Como deberia incorporarse una nueva IA</h2>
+      <ol>
+        <li>Leer `ONBOARDING.md` como primer paso obligatorio.</li>
+        <li>Leer el `README.md`.</li>
+        <li>Leer `AI_COLLABORATION.md`.</li>
+        <li>Revisar `CLAUDE.md` si necesita instrucciones especificas.</li>
+        <li>Confirmar el objetivo actual antes de editar el repo.</li>
+      </ol>
+    </section>
+
+    <section class="panel">
+      <span class="tag">Siguiente paso</span>
+      <h2>Hacia donde puede evolucionar</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Landing</h3>
+          <p>Una presentacion clara del proyecto o concepto.</p>
+        </article>
+        <article class="card">
+          <h3>App web</h3>
+          <p>Una primera implementacion funcional con stack definido.</p>
+        </article>
+        <article class="card">
+          <h3>Workspace modular</h3>
+          <p>Una base con varios modulos, flujos o componentes separados.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="footer">
+      <h2>Resumen</h2>
+      <p>
+        `Admira Next Dream Team` esta creando una base clara para que varias IAs y personas puedan colaborar con continuidad.
+        La fase actual no busca escalar tecnologia, sino ordenar la inteligencia del proyecto antes de construir.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
