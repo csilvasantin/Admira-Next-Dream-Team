@@ -1,4 +1,4 @@
-# Claude Context
+# Proyecto 05 — Admira-Next-Dream-Team
 
 Este repositorio se llama `Admira Next Dream Team`.
 
